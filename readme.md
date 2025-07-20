@@ -12,12 +12,13 @@ A Chrome extension that helps with Netflix household sharing authentication issu
 
 ## How It Works
 
-The extension monitors Netflix web traffic and manages specific authentication requests that can interfere with household sharing. When enabled, it:
+The extension uses advanced early injection technology to intercept Netflix authentication requests before they can be processed. When enabled, it:
 
-1. **Detects Netflix Pages**: Automatically activates when you visit any Netflix page
-2. **Manages Authentication**: Handles specific household verification requests
-3. **Maintains Sessions**: Helps keep your Netflix household connection stable
-4. **Works Transparently**: Operates in the background without interrupting your viewing
+1. **Early Script Injection**: Automatically injects blocking code at the earliest possible moment when Netflix pages load
+2. **Request Interception**: Catches and blocks specific household verification requests (`CLCSInterstitialLolomo` and `CLCSInterstitialPlaybackAndPostPlayback`)
+3. **Seamless Operation**: Works on first page loads, refreshes, and navigation without requiring hot reloads
+4. **Automatic Reload**: Detects household warning messages and performs hot reloads to bypass them
+5. **Silent Operation**: Works transparently in the background without console output or user interruption
 
 ## Installation
 
@@ -61,14 +62,23 @@ The extension works automatically once enabled - no additional configuration nee
 
 ```
 Netflix_Household_fix/
-├── manifest.json          # Extension configuration
-├── background.js          # Main extension logic
+├── manifest.json          # Extension configuration with content script setup
+├── background.js          # Extension state management and popup communication
+├── injector.js            # Early content script for request blocking
 ├── popup.html            # User interface
 ├── popup.css             # Interface styling
 ├── popup.js              # Interface functionality
 ├── icons/                # Extension icons
 └── readme.md            # Documentation
 ```
+
+### Key Features
+
+- **Document Start Injection**: Uses `"run_at": "document_start"` content script for maximum effectiveness
+- **Dual System Architecture**: Background script handles state management while content script handles blocking
+- **Target-Specific Blocking**: Specifically blocks `CLCSInterstitialLolomo` and `CLCSInterstitialPlaybackAndPostPlayback` operations
+- **Hot Reload Detection**: Automatically detects household verification warnings and performs cache-preserving reloads
+- **Silent Operation**: No console logging or user-visible output during normal operation
 
 ### Permissions Required
 
@@ -82,16 +92,19 @@ Netflix_Household_fix/
 
 - **Supported Sites**: All Netflix pages (netflix.com)
 - **Browser**: Chrome with Manifest V3 support
-- **Operation**: Works automatically on all Netflix sections including home, browse, watch, search, profiles, and settings
+- **Content Script**: Runs at document_start for earliest possible injection
+- **Request Types**: Blocks both XMLHttpRequest and Fetch API calls
+- **Operation**: Works on first page loads, refreshes, navigation, and SPA routing
 
 ## Troubleshooting
 
 ### Extension Not Working
 
 1. Verify the extension is enabled in the popup interface
-2. Refresh the Netflix page
-3. Ensure you are on a Netflix page (netflix.com)
-4. Try disabling and re-enabling the extension
+2. Reload the extension from `chrome://extensions/` (click the refresh icon)
+3. Open a fresh Netflix tab (not just refresh - open new tab and go to netflix.com)
+4. Check that both `background.js` and `injector.js` files are present
+5. Ensure you are on a Netflix page (netflix.com)
 
 ### Status Shows "Loading" or "Disabled"
 
@@ -110,23 +123,28 @@ Netflix_Household_fix/
 ### Testing the Extension
 
 1. Load the extension in Chrome extensions page
-2. Navigate to any Netflix page
-3. Check the popup for current status
+2. Open a **fresh Netflix tab** (important: not just refresh)
+3. Check the popup for current status - should show "Active" with green dot
 4. Test the enable/disable toggle functionality
+5. Verify the extension works on first page loads (not just hot reloads)
 
 ### Customizing Functionality
 
 To modify the extension behavior:
 
-1. Edit `background.js` and `injector.js` for core functionality changes
-2. Update the popup interface by modifying `popup.html`, `popup.css`, or `popup.js`
-3. Reload the extension after making changes
+1. **Core Blocking Logic**: Edit `injector.js` for request interception and blocking behavior
+2. **Extension State**: Modify `background.js` for enable/disable functionality and tab management
+3. **User Interface**: Update `popup.html`, `popup.css`, or `popup.js` for popup changes
+4. **Target Operations**: Change the GraphQL operation names in `injector.js` if Netflix updates their API
+5. **Testing**: Always test with fresh Netflix tabs after making changes
 
 ## Privacy and Security
 
-- **Local Processing**: All operations happen on your device
-- **No Data Collection**: The extension does not collect or transmit any personal data
-- **Minimal Permissions**: Only requests necessary browser permissions
+- **Local Processing**: All operations happen on your device using content scripts
+- **No Data Collection**: The extension does not collect, store, or transmit any personal data
+- **Minimal Permissions**: Only requests necessary browser permissions for Netflix page access
+- **No External Connections**: Extension operates entirely within your browser
+- **Silent Operation**: No console logging or external communication during normal use
 - **Open Source**: All code is visible and can be audited
 
 ## Support
@@ -144,4 +162,4 @@ This project is open source. Feel free to modify and distribute as needed.
 
 ---
 
-**Note**: This extension is designed to help with Netflix household authentication issues. Use responsibly and in accordance with Netflix's terms of service.
+**Note**: This extension uses advanced content script injection to intercept specific Netflix GraphQL operations (`CLCSInterstitialLolomo` and `CLCSInterstitialPlaybackAndPostPlayback`) that trigger household verification checks. It operates silently and preserves cache during reloads. Use responsibly and in accordance with Netflix's terms of service.
