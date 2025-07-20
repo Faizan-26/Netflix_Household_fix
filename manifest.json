@@ -6,7 +6,6 @@
   "permissions": [
     "tabs",
     "scripting",
-    "declarativeNetRequest",
     "storage",
     "activeTab",
     "webNavigation"
@@ -18,9 +17,9 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icons/icon16.svg",
-      "48": "icons/icon48.svg",
-      "128": "icons/icon128.svg"
+      "16": "./icons/icon16.png",
+      "48": "./icons/icon48.png",
+      "128": "./icons/icon128.png"
     }
   },
   "background": {
@@ -28,23 +27,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://www.netflix.com/*"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
+      "matches": ["*://*.netflix.com/*"],
+      "js": ["injector.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
     }
   ],
   "icons": {
-    "16": "icons/icon16.svg",
-    "48": "icons/icon48.svg",
-    "128": "icons/icon128.svg"
-  },
-  "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "netflix_rules",
-        "enabled": true,
-        "path": "rules.json"
-      }
-    ]
+    "16": "./icons/icon16.png",
+    "48": "./icons/icon48.png",
+    "128": "./icons/icon128.png"
   }
 }
