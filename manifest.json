@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Netflix Household fix",
+  "version": "1.0",
+  "description": "A Chrome extension to fix Netflix household issues for sharing Netflix with family members.",
+  "permissions": [
+    "tabs",
+    "scripting",
+    "declarativeNetRequest",
+    "storage",
+    "activeTab",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "*://www.netflix.com/*",
+    "*://web.prod.cloud.netflix.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.svg",
+      "48": "icons/icon48.svg",
+      "128": "icons/icon128.svg"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.netflix.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.svg",
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "netflix_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}

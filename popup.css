@@ -1,0 +1,367 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 380px;
+    min-height: 500px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+}
+
+/* Header styles */
+.header {
+    background: linear-gradient(135deg, #e50914 0%, #b20710 100%);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(229, 9, 20, 0.3);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    font-size: 24px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Main content */
+.main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Status section */
+.status-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.status-dot.active {
+    background: #4CAF50;
+    box-shadow: 0 0 12px rgba(76, 175, 80, 0.6);
+}
+
+.status-dot.inactive {
+    background: #757575;
+    box-shadow: 0 0 12px rgba(117, 117, 117, 0.3);
+}
+
+.status-dot.blocking {
+    background: #ff9800;
+    box-shadow: 0 0 12px rgba(255, 152, 0, 0.6);
+    animation: pulse 1.5s infinite;
+}
+
+.status-text {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Toggle switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #555;
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #e50914;
+    box-shadow: 0 0 12px rgba(229, 9, 20, 0.4);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Blocking section */
+.blocking-section {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.blocking-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.blocking-icon {
+    font-size: 18px;
+}
+
+.blocking-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.countdown-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.countdown-circle {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+}
+
+.countdown-svg {
+    width: 80px;
+    height: 80px;
+    transform: rotate(-90deg);
+}
+
+.countdown-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 2;
+}
+
+.countdown-progress {
+    fill: none;
+    stroke: #ff9800;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 100, 100;
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+.countdown-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff9800;
+}
+
+.countdown-unit {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.countdown-message {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 8px;
+}
+
+.status-message {
+    font-size: 14px;
+    opacity: 0.9;
+    text-align: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+/* Controls section */
+.controls-section {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #e50914 0%, #b20710 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-icon {
+    font-size: 16px;
+}
+
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-size: 12px;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #e50914;
+    word-break: break-all;
+    text-align: right;
+    max-width: 200px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.footer p {
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    body {
+        width: 320px;
+    }
+    
+    .main {
+        padding: 16px;
+    }
+    
+    .header {
+        padding: 16px;
+    }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Household Fix</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <h1>Netflix Household Fix</h1>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="status-section">
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span class="status-text" id="statusText">Loading...</span>
+                </div>
+
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="extensionToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="toggle-label">Extension Enabled</span>
+                </div>
+            </div>
+
+            <div class="blocking-section" id="blockingSection">
+                <div class="blocking-status">
+                    <div class="blocking-header">
+                        <span class="blocking-icon">🚫</span>
+                        <span class="blocking-title">GraphQL Blocking</span>
+                    </div>
+
+                    <div class="countdown-container" id="countdownContainer" style="display: none;">
+                        <div class="countdown-circle">
+                            <div class="countdown-text">
+                                <span id="countdownValue">5</span>
+                                <span class="countdown-unit">s</span>
+                            </div>
+                            <svg class="countdown-svg" viewBox="0 0 36 36">
+                                <path class="countdown-bg" d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="countdown-progress" id="countdownProgress" d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                        </div>
+                        <p class="countdown-message">Unblocking in progress...</p>
+                    </div>
+
+                    <div class="status-message" id="statusMessage">
+                        Ready to block GraphQL requests
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <button class="btn btn-primary" id="forceBlockBtn">
+                    <span class="btn-icon">⚡</span>
+                    Force Block Now
+                </button>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Target URL:</span>
+                        <span class="info-value">web.prod.cloud.netflix.com/graphql</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Block Duration:</span>
+                        <span class="info-value">5 seconds</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Helping Netflix households stay connected</p>
+        </footer>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
