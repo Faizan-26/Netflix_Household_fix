@@ -9,11 +9,13 @@
     "storage",
     "activeTab",
     "webNavigation",
-    "cookies"
+    "cookies",
+    "notifications"
   ],
   "host_permissions": [
     "*://*.netflix.com/*",
-    "*://web.prod.cloud.netflix.com/*"
+    "*://web.prod.cloud.netflix.com/*",
+    "*://*/*"
   ],
   "action": {
     "default_popup": "popup.html",
@@ -24,7 +26,7 @@
     }
   },
   "background": {
-    "service_worker": "background.min.js"
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {

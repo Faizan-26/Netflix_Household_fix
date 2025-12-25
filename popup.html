@@ -13,33 +13,73 @@
         <header class="header">
             <div class="logo">
                 <span class="logo-icon">🛡️</span>
-                <h1>Netflix Household Fix</h1>
+                <h1>Cookie & Netflix Fix</h1>
             </div>
+            <nav class="tabs">
+                <button class="tab-btn active" data-tab="home">Home</button>
+                <button class="tab-btn" data-tab="cookies">Cookies</button>
+            </nav>
         </header>
 
         <main class="main">
-            <p class="description">
-                Helping Netflix households stay connected
-            </p>
+            <!-- Home Tab -->
+            <div id="homeTab" class="tab-content active">
+                <p class="description">
+                    Helping households stay connected
+                </p>
 
-            <div class="toggle-section">
-                <div class="toggle-container">
-                    <label class="switch">
-                        <input type="checkbox" id="extensionToggle">
-                        <span class="slider"></span>
-                    </label>
-                    <span class="toggle-label">Extension Enabled</span>
+                <div class="toggle-section">
+                    <div class="toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="extensionToggle">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="toggle-label">Extension Enabled</span>
+                    </div>
+
+                    <div class="status-indicator">
+                        <div class="status-dot" id="statusDot"></div>
+                        <span class="status-text" id="statusText">Loading...</span>
+                    </div>
                 </div>
+            </div>
 
-                <div class="status-indicator">
-                    <div class="status-dot" id="statusDot"></div>
-                    <span class="status-text" id="statusText">Loading...</span>
+            <!-- Cookies Tab -->
+            <div id="cookiesTab" class="tab-content">
+                <div class="cookie-controls">
+                    <div class="format-selector">
+                        <label for="cookieFormat">Format:</label>
+                        <select id="cookieFormat">
+                            <option value="netscape">Netscape</option>
+                            <option value="json">JSON</option>
+                            <option value="raw">Raw</option>
+                        </select>
+                    </div>
+
+                    <div class="action-group">
+                        <h3>Export</h3>
+                        <div class="button-row">
+                            <button id="exportCopy" class="btn primary">Copy</button>
+                            <button id="exportDownload" class="btn secondary">Download</button>
+                        </div>
+                    </div>
+
+                    <div class="action-group">
+                        <h3>Manage</h3>
+                        <button id="deleteAllBtn" class="btn danger">Delete All Site Cookies</button>
+                    </div>
+
+                    <div class="action-group">
+                        <h3>Import</h3>
+                        <textarea id="importText" placeholder="Paste cookies here..."></textarea>
+                        <button id="importBtn" class="btn accent">Import Cookies</button>
+                    </div>
                 </div>
             </div>
         </main>
 
         <footer class="footer">
-            <p>Works automatically on all Netflix pages</p>
+            <p id="footerText">Automatic household fix active</p>
         </footer>
     </div>
 
