@@ -1,0 +1,25 @@
+{
+  "name": "netflix_household_fix",
+  "version": "1.0.0",
+  "description": "A Chrome extension that helps with Netflix household sharing authentication issues by managing certain network requests.",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "terser background.js -o background.min.js --compress --mangle && terser injector.js -o injector.min.js --compress --mangle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Faizan-26/Netflix_Household_fix.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Faizan-26/Netflix_Household_fix/issues"
+  },
+  "homepage": "https://github.com/Faizan-26/Netflix_Household_fix#readme",
+  "devDependencies": {
+    "terser": "^5.44.1"
+  }
+}

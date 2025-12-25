@@ -8,10 +8,11 @@
     "scripting",
     "storage",
     "activeTab",
-    "webNavigation"
+    "webNavigation",
+    "cookies"
   ],
   "host_permissions": [
-    "*://www.netflix.com/*",
+    "*://*.netflix.com/*",
     "*://web.prod.cloud.netflix.com/*"
   ],
   "action": {
@@ -23,12 +24,16 @@
     }
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.min.js"
   },
   "content_scripts": [
     {
-      "matches": ["*://*.netflix.com/*"],
-      "js": ["injector.js"],
+      "matches": [
+        "*://*.netflix.com/*"
+      ],
+      "js": [
+        "injector.min.js"
+      ],
       "run_at": "document_start",
       "world": "MAIN"
     }
