@@ -5,7 +5,7 @@
   "main": "background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "terser background.js -o background.min.js --compress --mangle && terser injector.js -o injector.min.js --compress --mangle"
+    "build": "javascript-obfuscator code/background.js --output background.min.js --config obfuscator-config.json && javascript-obfuscator code/injector.js --output injector.min.js --config obfuscator-config.json"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Faizan-26/Netflix_Household_fix#readme",
   "devDependencies": {
+    "javascript-obfuscator": "^5.1.0",
     "terser": "^5.44.1"
   }
 }
