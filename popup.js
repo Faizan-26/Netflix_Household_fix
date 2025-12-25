@@ -155,7 +155,7 @@ function setupEventListeners() {
 
                     // Clean domain for set (remove leading dot if it's there as chrome.cookies.set handles it via 'domain' param)
                     if (newCookie.domain.startsWith('.')) {
-                        // Keep it as is, chrome handles it
+                        newCookie.domain = newCookie.domain.substring(1);
                     }
 
                     await chrome.cookies.set(newCookie);
@@ -263,11 +263,16 @@ function showStatus(msg, type) {
         footerText.style.color = '#666';
     }, 3000);
 
-    chrome.notifications.create({
-        type: 'basic',
-        iconUrl: 'icons/icon48.png',
-        title: 'Cookie Master',
-        message: msg
+    // usage of notifications
+    chrome.permissions.contains({ permissions: ['notifications'] }, (result) => {
+        if (result) {
+            chrome.notifications.create({
+                type: 'basic',
+                iconUrl: 'icons/icon48.png',
+                title: 'Cookie Master',
+                message: msg
+            });
+        }
     });
 }
 
