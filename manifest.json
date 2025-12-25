@@ -26,7 +26,7 @@
     }
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.min.js"
   },
   "content_scripts": [
     {
