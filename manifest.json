@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Netflix Household fix",
-  "version": "1.0",
+  "version": "1.5",
   "description": "A Chrome extension to fix Netflix household issues for sharing Netflix with family members.",
   "permissions": [
     "tabs",
