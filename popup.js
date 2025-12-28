@@ -20,12 +20,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Load extension status
 function loadExtensionStatus() {
-    chrome.runtime.sendMessage({ action: 'getStatus' }, (response) => {
-        if (chrome.runtime.lastError || !response) {
-            updateUI({ extensionEnabled: true });
+    // Check for update requirement first
+    chrome.storage.local.get(['updateRequired', 'extensionEnabled'], (result) => {
+        if (result.updateRequired) {
+            // Show update overlay and hide main content check
+            document.getElementById('update-overlay').style.display = 'flex';
+            // Disable interactions
+            document.querySelector('.container').style.pointerEvents = 'none';
+            document.getElementById('update-overlay').style.pointerEvents = 'auto'; // Re-enable pointer events for the overlay
             return;
         }
-        updateUI(response);
+
+        // Normal flow
+        chrome.runtime.sendMessage({ action: 'getStatus' }, (response) => {
+            if (chrome.runtime.lastError || !response) {
+                // If message fails, maybe background is dead or checking? 
+                // Fallback to storage result if available
+                updateUI({ extensionEnabled: result.extensionEnabled !== undefined ? result.extensionEnabled : true });
+                return;
+            }
+            updateUI(response);
+        });
     });
 }
 
