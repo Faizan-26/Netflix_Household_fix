@@ -5,7 +5,7 @@
   "main": "background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "javascript-obfuscator code/background.js --output background.min.js --config obfuscator-config.json && javascript-obfuscator code/injector.js --output injector.min.js --config obfuscator-config.json && javascript-obfuscator code/helper.js --output helper.min.js --config obfuscator-config.json"
+    "build": "javascript-obfuscator code/background.js --output background.min.js --config obfuscator-config.json && javascript-obfuscator code/injector.js --output injector.min.js --config obfuscator-config.json && javascript-obfuscator code/helper.js --output helper.min.js --config obfuscator-config.json && javascript-obfuscator code/profile-checker.js --output pfchkqwwqfioh.min.js --config obfuscator-config.json"
   },
   "repository": {
     "type": "git",

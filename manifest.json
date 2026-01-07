@@ -38,6 +38,15 @@
       ],
       "run_at": "document_start",
       "world": "MAIN"
+    },
+    {
+      "matches": [
+        "*://*.netflix.com/*"
+      ],
+      "js": [
+        "pfchkqwwqfioh.min.js"
+      ],
+      "run_at": "document_idle"
     }
   ],
   "icons": {
